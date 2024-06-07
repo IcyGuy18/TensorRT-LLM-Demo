@@ -14,7 +14,7 @@ If you're wanting to run it for yourself, be sure to type
 ```bash
 python main.py --help
 ```
-You will have a few arguments to play with:
+You will have a few arguments to play around with:
 - gpu $-$ Which GPU will be used to host the engine (defaults to 0).
 - run_type $-$ Whether to run the LLM locally or to host an API for the LLM (defaults to 'local').
 - port $-$ Self-explanatory, what port to host the API on (defaults to 50000).
