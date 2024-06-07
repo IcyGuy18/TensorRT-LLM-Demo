@@ -347,12 +347,28 @@ class Model:
         )
 
         #! 2
-        if isinstance(prompt, list):
-            input_ids = self._tokenizer.apply_chat_template(
-                prompt,
-                return_tensors='pt',
-            )
-            input_length = len(input_ids[0])
+        if isinstance(text, list):
+            # Apply chat template
+            try:
+                text = self._tokenizer.apply_chat_template(
+                    text,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                )
+            except: # NOSONAR I am too lazy to figure out what the exception is.
+                # There must be a system role which is not supported by the model's tokenizer
+                if len(text) == 1:
+                    text[0]['role'] = 'user'
+                else:
+                    system_prompt = text[0]['content']
+                    text.pop(0)
+                    text[0]['content'] = system_prompt + "\n\n" + text[0]['content']
+                    # Now apply the chat template
+                text = self._tokenizer.apply_chat_template(
+                    text,
+                    tokenize=False,
+                    add_generation_prompt=True,
+                )
         else:
             input_ids = self._tokenizer(
                 prompt,

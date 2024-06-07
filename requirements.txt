@@ -1,0 +1,5 @@
+tensorrt-llm==0.10.0.dev2024041600
+tensorrt==9.3.0.post12.dev1
+transformers==4.38.2
+torch==2.2.2
+tqdm

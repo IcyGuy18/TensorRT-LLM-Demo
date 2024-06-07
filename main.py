@@ -1,6 +1,5 @@
 from model import Model
 from llm_chat_history import LLMChatHistory
-from custom_response import CustomResponse # NOSONAR
 
 import os
 import argparse
@@ -33,7 +32,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         '--port',
         type=int,
-        default=42069,
+        default=50000,
         help='What port to launch the application on.'
     )
 
